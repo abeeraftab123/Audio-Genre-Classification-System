@@ -49,23 +49,23 @@ def build_model(input_shape):
 
     #1st layer (add layer with 32 kernels of grid size 3x3)
     model.add(keras.layers.Conv2D(32,(3,3),activation="relu",input_shape=input_shape))
-    model.add(keras.layers.MaxPool2D((3,3),strides=(2,2),padding="same")) #Pooling layers are used to reduce the dimensions, Stride: number of pixels shifts over the input matrix
+    model.add(keras.layers.MaxPool2D((3,3),strides=(2,2),padding="same")) #Pooling layers are used to reduce the dimensions, Stride are number of pixels shifts over the input matrix
     model.add(keras.layers.BatchNormalization())
 
     #2nd layer
     model.add(keras.layers.Conv2D(32,(3,3),activation="relu"))
-    model.add(keras.layers.MaxPool2D((3,3),strides=(2,2),padding="same")) #pooling
+    model.add(keras.layers.MaxPool2D((3,3),strides=(2,2),padding="same")) 
     model.add(keras.layers.BatchNormalization())
 
     #3rd layer
     model.add(keras.layers.Conv2D(32,(2,2),activation="relu"))
-    model.add(keras.layers.MaxPool2D((2,2),strides=(2,2),padding="same")) #pooling
+    model.add(keras.layers.MaxPool2D((2,2),strides=(2,2),padding="same"))
     model.add(keras.layers.BatchNormalization())
 
     #flatten the output
     model.add(keras.layers.Flatten())
     model.add(keras.layers.Dense(64,activation="relu")) #layer for classification 64 neurons
-    model.add(keras.layers.Dropout(0.3)) #overfitting
+    model.add(keras.layers.Dropout(0.3)) 
 
     #output layer
     model.add(keras.layers.Dense(10,activation="softmax")) #10 neurons for 10 different genres
@@ -90,7 +90,7 @@ def predict(model,X):
 def result(index):
     with open(DATA_PATH,"r") as fp:
         data=json.load(fp)
-
+    print(data['mapping'][index[0]])
     return data["mapping"][index[0]]
     
     
@@ -114,7 +114,7 @@ def classify():
                   loss="sparse_categorical_crossentropy",
                   metrics=['accuracy'])
     #train the model
-    model.fit(X_train,y_train,validation_data=(X_validation,y_validation),batch_size=32,epochs=10)
+    model.fit(X_train,y_train,validation_data=(X_validation,y_validation),batch_size=32,epochs=40)
 
     #evluate CNN on test set
     test_error,test_accuracy=model.evaluate(X_test,y_test,verbose=1)

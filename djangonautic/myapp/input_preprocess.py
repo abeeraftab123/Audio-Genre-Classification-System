@@ -3,8 +3,9 @@ import math
 import json
 import os
 
-FILE="your-summer-day-5448.wav"
+# FILE="your-summer-day-5448.wav"
 JSON_PATH="audio.json"
+
 SAMPLE_RATE=22050
 DURATION=30 #measuring duration of song in seconds as per dataset
 SAMPLES_PER_TRACK=SAMPLE_RATE*DURATION

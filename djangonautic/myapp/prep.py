@@ -19,15 +19,6 @@ signal, sr = librosa.load(file, sr = 22050) #Load an audio file as a floating po
 # plt.ylabel("Amplitude")
 # plt.show()
 
-#         ^
-#         |
-#         |
-# amp.    |
-#         |
-#         |
-#         |__________________>
-
-#         time ->
 
 
 # fft -> spectrum
@@ -62,8 +53,8 @@ log_spectrogram = librosa.amplitude_to_db(spectrogram) #changing to decibal
 
 
 #MFCCs
-MFCCs = librosa.feature.mfcc(signal, n_fft=n_fft, hop_length=hop_length, n_mfcc=13)
-librosa.display.specshow(MFCCs, sr=sr, hop_length=hop_length)
+# MFCCs = librosa.feature.mfcc(signal, n_fft=n_fft, hop_length=hop_length, n_mfcc=13)
+# librosa.display.specshow(MFCCs, sr=sr, hop_length=hop_length)
 plt.xlabel("Time")
 plt.ylabel("MFCC")
 plt.colorbar()

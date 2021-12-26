@@ -19,7 +19,6 @@ def index(request):
             genre=classify()
             genre = genre[16:]
             return render(request, 'index.html', {'genre':genre})
-            #return HttpResponse('genre of song:'+genre)
 
         else:
             return HttpResponse('Invalid file')
